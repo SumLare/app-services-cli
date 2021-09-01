@@ -67,12 +67,12 @@ func NewConnectCommand(f *factory.Factory) *cobra.Command {
 }
 
 func runConnect(opts *Options) error {
-	connection, err := opts.Connection(connection.DefaultConfigSkipMasAuth)
+	conn, err := opts.Connection(connection.DefaultConfigSkipMasAuth)
 	if err != nil {
 		return err
 	}
 
-	clusterConn, err := cluster.NewKubernetesClusterConnection(connection, opts.Config, opts.Logger, opts.kubeconfigLocation, opts.IO, opts.localizer)
+	clusterConn, err := cluster.NewKubernetesClusterConnection(conn, opts.Config, opts.Logger, opts.kubeconfigLocation, opts.IO, opts.localizer)
 	if err != nil {
 		return err
 	}
